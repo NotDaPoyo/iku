@@ -42,6 +42,7 @@
               
             <div id="player-container">
                 <div id="play-pause" class="play">Play</div>
+            <input type="checkbox" id="checkbox"></input>
             </div>
         </div>
     </div>
@@ -58,6 +59,7 @@
         </div>
         <div class="w-100 h-25 p-5">
             <h1>Made with love by Poyo!</h1>
+            <h3>With the help of: <a href="https://thesomething.uk/">Jesus</a>,</h3>
         </div>
     </div>
     
@@ -84,5 +86,13 @@ controlBtn.addEventListener("click", playPause);
 track.addEventListener("ended", function() {
   controlBtn.className = "play";
 });
+
+volumeControl.oninput = function () {
+    console.log(volumeControl.value);
+    gainMod.gain.value = parseFloat(volumeControl.value);
+};
+document.querySelector('#checkbox').oninput = function(){
+  track.loop = document.querySelector('#checkbox').checked;
+}
 </script>
 {% endblock content %}
