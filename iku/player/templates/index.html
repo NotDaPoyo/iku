@@ -21,7 +21,7 @@
         <h1 class="underline">Play.list</h1>
         <div class="border border-light h-75 p-2">
             <h2>Playlist</h2>
-            <p>{{song_location.url}} </p>
+            <h4>Now playing: {{ selected_song.name }}</h4>
             <div>
                 {% for song in playlist %}
                 <div class="d-inline">
@@ -42,7 +42,7 @@
         <h1 class="underline">Song.List</h1>
         {% for song in songs %}
                 <div class="bg-success3">
-                    <h3 class="d-inline">- {{ song.name }}     </h3><h6 class="d-inline">< {{song.author}} ></h6>
+                    <a id="audio-link" href="../home/{{ song.id }}">- <h3 class="d-inline">{{ song.name }}</h3></a><h6 class="d-inline">     < {{song.author}} ></h6>
                 </div>
         {% endfor %}
     </div>
