@@ -38,14 +38,15 @@
               </audio>
         </div>
     </div>
-    <div class="p-3 py-1 w-75 h-100 background-green">
-        <h1 class="underline">Song.List</h1>
-        {% for song in songs %}
-                <div class="bg-success3">
-                    <a id="audio-link" href="../home/{{ song.id }}">- <h3 class="d-inline">{{ song.name }}</h3></a><h6 class="d-inline">     < {{song.author}} ></h6>
-                </div>
-        {% endfor %}
-    </div>
+    <div class="w-100">
+        <div class="p-3 py-1 w-100 h-100 background-green">
+            <h1 class="underline">Song.List</h1>
+            {% for song in songs %}
+                    <div class="bg-success3">
+                        <a id="audio-link" href="../home/{{ song.id }}">- <h3 class="d-inline">{{ song.name }}</h3></a><h6 class="d-inline">     < {{song.author}} ></h6>
+                    </div>
+            {% endfor %}
+        </div>
     </div>
     
 </div>
