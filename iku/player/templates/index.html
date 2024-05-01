@@ -41,11 +41,14 @@
             </audio>
             
             <div id="player-container">
-
-                        <input type="checkbox" id="checkbox" class="text-white check">Loop?</input>
-                        <input type="range" name="audioProgress" id="audioProgress" min="0" value="0" max="{{song_lenght}}" step=".1">Time</input>
-                        <input type="range" name="volume" id="volume" min="0" value="0" max="100" step="1">Volume</input>
-                    <div id="play-pause" class="play w-100"></div>
+                <div class="d-inline-block">
+                    <input type="checkbox" id="checkbox" class="text-white check">Loop?</input>
+                    <div class="d-block h-auto">
+                        <input type="range" class="slider" name="audioProgress" id="audioProgress" min="0" value="0" max="{{song_lenght}}" step=".1">Time</input>
+                        <input type="range" class="slider" name="volume" id="volume" min="0" value="0" max="100" step="1">Volume</input>
+                    </div>
+                </div>
+                <div id="play-pause" class="play w-100"></div>
             </div>
         </div>
     </div>
