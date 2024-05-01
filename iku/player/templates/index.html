@@ -20,12 +20,13 @@
     <div class="p-2 py-1 w-25 h-100 bg-dark text-white">
         <h1 class="underline">Play.list</h1>
         <div class="border border-light h-75 p-2">
-            <h2>Playlist</h2>
+            <h2>Music</h2>
+            <p>Lenght: {{song_lenght}} seconds.</p>
             <h4>Now playing: {{ selected_song.name }}</h4>
             <div>
                 {% for song in playlist %}
                 <div class="d-inline">
-                    <h3 class="d-inline">- {{ song.name }}     </h3><h6 class="d-inline">< {{song.author}} ></h6>
+                    <h3 class="d-inline">- {{ song.name }}     </h3><h6 >< {{song.author}} ></h6>
                 </div>
                 {% endfor %}
             </div>
@@ -33,19 +34,18 @@
         <div id="player" class="border border-light w-100 d-flex">
             
             <audio>
-                
               Your browser does not support the audio element.
             </audio>
             <audio id="track">
                 <source src="{{song_location.url}}" type="audio/mpeg">
             </audio>
-            <p>Lenght: {{song_lenght}}</p>
+            
             <div id="player-container">
-                
-                <div id="play-pause" class="play">Play</div>
-                <input type="checkbox" id="checkbox" class="text-white">Loop?</input>
-                <input type="range" name="audioProgress" id="audioProgress" min="0" value="0" max="{{song_lenght}}" step=".1">Time</input>
-                <input type="range" name="volume" id="volume" min="0" value="0" max="100" step="1">Volume</input>
+
+                        <input type="checkbox" id="checkbox" class="text-white check">Loop?</input>
+                        <input type="range" name="audioProgress" id="audioProgress" min="0" value="0" max="{{song_lenght}}" step=".1">Time</input>
+                        <input type="range" name="volume" id="volume" min="0" value="0" max="100" step="1">Volume</input>
+                    <div id="play-pause" class="play w-100"></div>
             </div>
         </div>
     </div>
@@ -104,6 +104,7 @@
         var volumeInput = document.getElementById('volume');
         volumeInput.addEventListener('input', function() {
             track.volume = volumeInput.value/100;
+
         });
 
     function getTimeCodeFromNum(num) {
