@@ -42,7 +42,7 @@
               
             <div id="player-container">
                 <div id="play-pause" class="play">Play</div>
-            <input type="checkbox" id="checkbox"></input>
+            <input type="checkbox" id="checkbox" class="text-white">Loop?</input>
             </div>
         </div>
     </div>
@@ -65,34 +65,29 @@
     
 </div>
 
+
 <script>
     var track = document.getElementById('track');
 
-var controlBtn = document.getElementById('play-pause');
-
-function playPause() {
-    if (track.paused) {
-        track.play();
-        //controlBtn.textContent = "Pause";
-        controlBtn.className = "pause";
-    } else { 
-        track.pause();
-         //controlBtn.textContent = "Play";
-        controlBtn.className = "play";
+    var controlBtn = document.getElementById('play-pause');
+    function playPause() {
+        if (track.paused) {
+            track.play();
+            controlBtn.className = "pause";
+        } else { 
+            track.pause();
+            controlBtn.className = "play";
+        }
     }
-}
+    controlBtn.addEventListener("click", playPause);
+    track.addEventListener("ended", function() {
+        controlBtn.className = "play";
+    });
 
-controlBtn.addEventListener("click", playPause);
-track.addEventListener("ended", function() {
-  controlBtn.className = "play";
-});
-
-volumeControl.oninput = function () {
-    console.log(volumeControl.value);
-    gainMod.gain.value = parseFloat(volumeControl.value);
-};
-document.querySelector('#checkbox').oninput = function(){
-  track.loop = document.querySelector('#checkbox').checked;
-}
+    var loopCheckbox = document.querySelector('#checkbox');
+    loopCheckbox.oninput = function() {
+        track.loop = loopCheckbox.checked;
+    }
 </script>
+
 {% endblock content %}
