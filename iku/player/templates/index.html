@@ -42,7 +42,9 @@
             
             <div id="player-container">
                 <div class="d-inline-block">
-                    <input type="checkbox" id="checkbox" class="text-white check">Loop?</input>
+                    <input type="checkbox" id="loop" class="text-white check">Loop?</input>
+                    <input type="checkbox" id="nextSong" class="text-white check">Next Song?</input>
+                    <input type="checkbox" id="cookie" class="text-white check">Wanna cookie?</input>
                     <div class="d-block h-auto">
                         <input type="range" class="slider" name="audioProgress" id="audioProgress" min="0" value="0" max="{{song_lenght}}" step=".1">Time</input>
                         <input type="range" class="slider" name="volume" id="volume" min="0" value="0" max="100" step="1">Volume</input>
@@ -78,7 +80,7 @@
         var controlBtn = document.getElementById('play-pause');
         var audioProgress = document.getElementById('audioProgress');
         var checkbox = document.getElementById('checkbox');
-
+        
         function playPause() {
             if (track.paused) {
                 track.play();
@@ -88,7 +90,8 @@
                 controlBtn.className = "play";
             }
         }
-
+        
+        
         function updateTrackTime() {
             if (audioProgress.clicked) {
                 audioProgress.value = track.currentTime;
