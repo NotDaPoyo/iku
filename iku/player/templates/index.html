@@ -22,9 +22,11 @@
         <div class="border border-light h-75 p-2">
             <h2>Playlist</h2>
             <div>
-                <h3>Song 1</h3>
-                <h3>Song 2</h3>
-                <h3>Song 3</h3>
+                {% for song in playlist %}
+                <div class="d-inline">
+                    <h3 class="d-inline">- {{ song.name }}     </h3><h6 class="d-inline">< {{song.author}} ></h6>
+                </div>
+                {% endfor %}
             </div>
         </div>
         <div id="player" class="border border-light w-100 d-flex">
@@ -33,6 +35,11 @@
     </div>
     <div class="p-3 py-1 w-75 h-100 background-green">
         <h1 class="underline">Song.List</h1>
+        {% for song in songs %}
+                <div class="bg-success3">
+                    <h3 class="d-inline">- {{ song.name }}     </h3><h6 class="d-inline">< {{song.author}} ></h6>
+                </div>
+        {% endfor %}
     </div>
     </div>
     
