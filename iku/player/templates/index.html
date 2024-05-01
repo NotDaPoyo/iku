@@ -32,22 +32,57 @@
         </div>
         <div id="player" class="border border-light w-100 d-flex">
             
-            <audio controls>
-                <source src="{{song_location.url}}" type="audio/mpeg">
+            <audio>
+                
               Your browser does not support the audio element.
-              </audio>
+            </audio>
+            <audio id="track">
+                <source src="{{song_location.url}}" type="audio/mpeg">
+            </audio>
+              
+            <div id="player-container">
+                <div id="play-pause" class="play">Play</div>
+            </div>
         </div>
     </div>
     <div class="w-100">
-        <div class="p-3 py-1 w-100 h-100 background-green">
+        <div class="p-3 py-1 w-100 h-75 background-green">
             <h1 class="underline">Song.List</h1>
-            {% for song in songs %}
+            <div>
+                {% for song in songs %}
                     <div class="bg-success3">
                         <a id="audio-link" href="../home/{{ song.id }}">- <h3 class="d-inline">{{ song.name }}</h3></a><h6 class="d-inline">     < {{song.author}} ></h6>
                     </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="w-100 h-25 p-5">
+            <h1>Made with love by Poyo!</h1>
         </div>
     </div>
     
 </div>
+
+<script>
+    var track = document.getElementById('track');
+
+var controlBtn = document.getElementById('play-pause');
+
+function playPause() {
+    if (track.paused) {
+        track.play();
+        //controlBtn.textContent = "Pause";
+        controlBtn.className = "pause";
+    } else { 
+        track.pause();
+         //controlBtn.textContent = "Play";
+        controlBtn.className = "play";
+    }
+}
+
+controlBtn.addEventListener("click", playPause);
+track.addEventListener("ended", function() {
+  controlBtn.className = "play";
+});
+</script>
 {% endblock content %}
