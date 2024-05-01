@@ -21,6 +21,7 @@
         <h1 class="underline">Play.list</h1>
         <div class="border border-light h-75 p-2">
             <h2>Playlist</h2>
+            <p>{{song_location.url}} </p>
             <div>
                 {% for song in playlist %}
                 <div class="d-inline">
@@ -30,7 +31,7 @@
             </div>
         </div>
         <div id="player" class="border border-light w-100 d-flex">
-            <p>{{song_location.url}} </p><br><br>
+            
             <audio controls>
                 <source src="{{song_location.url}}" type="audio/mpeg">
               Your browser does not support the audio element.

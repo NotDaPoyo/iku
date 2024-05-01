@@ -12,10 +12,10 @@ class Musician(models.Model):
 
 class Song(models.Model):
     author = models.ForeignKey(Musician, on_delete=models.CASCADE)
-    file = models.FileField(upload_to="songs")
+    file = models.FileField(upload_to="media/")
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
-    lenght = models.DecimalField(decimal_places=2, max_digits=200)
+    lenght = models.TimeField(blank=True, null=True)
 
     def __str__(self):
         return self.name
