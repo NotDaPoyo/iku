@@ -39,16 +39,20 @@
             <audio id="track">
                 <source src="{{song_location.url}}" type="audio/mpeg">
             </audio>
-              
+            <p>Lenght: {{song_lenght}}</p>
             <div id="player-container">
+                
                 <div id="play-pause" class="play">Play</div>
-            <input type="checkbox" id="checkbox" class="text-white">Loop?</input>
+                <input type="checkbox" id="checkbox" class="text-white">Loop?</input>
+                <input type="range" name="audioProgress" id="audioProgress" min="0" value="0" max="{{song_lenght}}" step=".1">Time</input>
+                <input type="range" name="volume" id="volume" min="0" value="0" max="100" step="1">Volume</input>
             </div>
         </div>
     </div>
     <div class="w-100">
         <div class="p-3 py-1 w-100 h-75 background-green">
             <h1 class="underline">Song.List</h1>
+            
             <div>
                 {% for song in songs %}
                     <div class="bg-success3">
@@ -57,37 +61,50 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="w-100 h-25 p-5">
+        <div class="w-100 h-25 p-3">
             <h1>Made with love by Poyo!</h1>
-            <h3>With the help of: <a href="https://thesomething.uk/">Jesus</a>,</h3>
+            <h3>With the help of: <a href="https://thesomething.uk/">Jesus</a>.</h3>
         </div>
     </div>
     
 </div>
 
 
-<script>
-    var track = document.getElementById('track');
+    <script>
+        var track = document.getElementById('track');
+        var controlBtn = document.getElementById('play-pause');
+        var audioProgress = document.getElementById('audioProgress');
 
-    var controlBtn = document.getElementById('play-pause');
-    function playPause() {
-        if (track.paused) {
-            track.play();
-            controlBtn.className = "pause";
-        } else { 
-            track.pause();
-            controlBtn.className = "play";
+        function playPause() {
+            if (track.paused) {
+                track.play();
+                controlBtn.className = "pause";
+            } else { 
+                track.pause();
+                controlBtn.className = "play";
+            }
         }
-    }
-    controlBtn.addEventListener("click", playPause);
-    track.addEventListener("ended", function() {
-        controlBtn.className = "play";
-    });
 
-    var loopCheckbox = document.querySelector('#checkbox');
-    loopCheckbox.oninput = function() {
-        track.loop = loopCheckbox.checked;
-    }
-</script>
+        function updateTrackTime() {
+            if (audioProgress.clicked) {
+                audioProgress.value = track.currentTime;
+            } else {
+                track.currentTime = audioProgress.value;
+            }
+            audioProgress.value = track.currentTime;
+        }
+
+        controlBtn.addEventListener("click", playPause);
+        track.addEventListener("ended", function() {
+            controlBtn.className = "play";
+        });
+        audioProgress.addEventListener("input", updateTrackTime);
+
+
+        var volumeInput = document.getElementById('volume');
+        volumeInput.addEventListener('input', function() {
+            track.volume = volumeInput.value/100;
+        });
+    </script>
 
 {% endblock content %}
