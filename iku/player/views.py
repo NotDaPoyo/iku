@@ -14,7 +14,8 @@ def home(request, id=1):
         "songs":songs,
         "selected_song":selected_song,
         "song_location":song_location,
-        "song_lenght":song_lenght.info.length
+        "song_lenght":round(song_lenght.info.length, 1),
+        "playlists":Playlist.objects.all(),
     }
     
     return render(request, "index.html", context)

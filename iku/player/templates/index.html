@@ -20,15 +20,19 @@
     <div class="p-2 py-1 w-25 h-100 bg-dark text-white">
         <h1 class="underline">Play.list</h1>
         <div class="border border-light h-75 p-2">
-            <h2>Music</h2>
-            <p>Lenght: {{song_lenght}} seconds.</p>
+            <h2>Playlists</h2>
+            
             <h4>Now playing: {{ selected_song.name }}</h4>
+            {% for playlist in playlists %}
+                <h5 class="m-0 p-0">- {{playlist.name}}</h5>
+            {% endfor %}
             <div>
                 {% for song in playlist %}
                 <div class="d-inline">
                     <h3 class="d-inline">- {{ song.name }}     </h3><h6 >< {{song.author}} ></h6>
                 </div>
                 {% endfor %}
+                
             </div>
         </div>
         <div id="player" class="border border-light w-100 d-flex">
@@ -41,6 +45,7 @@
                 <div class="d-inline-block">
                     <input type="checkbox" id="loop" class="text-white check">Loop?</input>
                     <input type="checkbox" id="nextSong" class="text-white check">Next Song?</input>
+                    <p class="text-white d-inline-block m-0 p-0">Lenght: {{song_lenght}}s.</p>
                     <div class="d-block h-auto">
                         <input type="range" class="slider" name="audioProgress" id="audioProgress" min="0" value="0" max="{{song_lenght}}" step=".1">Time</input>
                         <input type="range" class="slider" name="volume" id="volume" min="0" value="0" max="100" step="1">Volume</input>
