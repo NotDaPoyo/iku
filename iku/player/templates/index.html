@@ -79,15 +79,10 @@
         var loop = document.getElementById('loop');
         
         track.addEventListener('ended', function() {
-        function loop(){
             if (loop.clicked) {
-                track.currentTime = 0.1;
-                track.play();
-                controlBtn.className = "play";
-            }   
-        }
-
-        }, false);
+                audioElement.loop=true;
+            } 
+        },false);
 
         function playPause() {
             if (track.paused) {
