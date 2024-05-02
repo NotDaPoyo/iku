@@ -20,11 +20,12 @@
     <div class="p-2 py-1 w-25 h-100 bg-dark text-white">
         <h1 class="underline">Play.list</h1>
         <div class="border border-light h-75 p-2">
-            <h2>Playlists</h2>
+            <h2>Top Playlists</h2>
             
-            <h4>Now playing: {{ selected_song.name }}</h4>
+            
             {% for playlist in playlists %}
                 <h5 class="m-0 p-0">- {{playlist.name}}</h5>
+                <h6>{{playlist.description}}</h6>
             {% endfor %}
             <div>
                 {% for song in playlist %}
@@ -32,8 +33,9 @@
                     <h3 class="d-inline">- {{ song.name }}     </h3><h6 >< {{song.author}} ></h6>
                 </div>
                 {% endfor %}
-                
             </div>
+            <div class="w-100 border border-light"></div>
+            <h4>Now playing: {{ selected_song.name }}</h4>
         </div>
         <div id="player" class="border border-light w-100 d-flex">
             

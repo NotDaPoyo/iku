@@ -26,6 +26,12 @@ class Playlist(models.Model):
     description = models.TextField(max_length=1000)
     list = models.ManyToManyField(to=Song)
 
+    def get_first_song(self):
+        try:
+            return self.song.order_by('id')[0]
+        except IndexError:
+            return None
+
     def __str__(self):
         return f"{self.name}"
     
