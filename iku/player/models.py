@@ -19,3 +19,18 @@ class Song(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Playlist(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+    
+class PlaylistItem(models.Model):
+    playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
+    audio_file = models.ForeignKey(Song.file, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.playlist.name} - {self.audio_file.title}"

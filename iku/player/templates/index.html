@@ -41,7 +41,6 @@
                 <div class="d-inline-block">
                     <input type="checkbox" id="loop" class="text-white check">Loop?</input>
                     <input type="checkbox" id="nextSong" class="text-white check">Next Song?</input>
-                    <a><button class="btn btn-primary m-0 p-0">Cookie?</button></a>
                     <div class="d-block h-auto">
                         <input type="range" class="slider" name="audioProgress" id="audioProgress" min="0" value="0" max="{{song_lenght}}" step=".1">Time</input>
                         <input type="range" class="slider" name="volume" id="volume" min="0" value="0" max="100" step="1">Volume</input>
@@ -77,6 +76,7 @@
         var controlBtn = document.getElementById('play-pause');
         var audioProgress = document.getElementById('audioProgress');
         var loop = document.getElementById('loop');
+        var volumeInput = document.getElementById('volume');
 
         track.addEventListener('ended', function() {
         if (loop.checked) {
@@ -98,39 +98,17 @@
         
         
         function updateTrackTime() {
-            if (audioProgress.clicked) {
-                audioProgress.value = track.currentTime;
-            } else {
-                track.currentTime = audioProgress.value;
-            }
-            audioProgress.value = track.currentTime;
+            track.currentTime = audioProgress.value;
         }
+
+        track.addEventListener('timeupdate', function() {
+            audioProgress.value = track.currentTime;
+        });
 
         controlBtn.addEventListener("click", playPause);
         audioProgress.addEventListener("input", updateTrackTime);
-        
-
-        var volumeInput = document.getElementById('volume');
         volumeInput.addEventListener('input', function() {
             track.volume = volumeInput.value/100;
-
         });
-
-
-
-    function getTimeCodeFromNum(num) {
-        let seconds = parseInt(num);
-        let minutes = parseInt(seconds / 60);
-        seconds -= minutes * 60;
-        const hours = parseInt(minutes / 60);
-        minutes -= hours * 60;
-        if (hours === 0) return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
-        return `${String(hours).padStart(2, 0)}:${minutes}:${String(
-          seconds % 60
-            ).padStart(2, 0)}`;
-
-
-    }
-    </script>
-
+</script>
 {% endblock content %}
