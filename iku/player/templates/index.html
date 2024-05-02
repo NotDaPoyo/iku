@@ -27,18 +27,12 @@
                 <h5 class="m-0 p-0">- {{playlist.name}}</h5>
                 <h6>{{playlist.description}}</h6>
             {% endfor %}
-            {% for song in sel_playlist.songs %}
-                <p>{{ song.name }}</p>
-            {% endfor %}
-            <div>
-                {% for song in playlist %}
-                <div class="d-inline">
-                    <h3 class="d-inline">- {{ song.name }}     </h3><h6 >< {{song.author}} ></h6>
-                </div>
-                {% endfor %}
-            </div>
             <div class="w-100 border border-light"></div>
             <h4>Now playing: {{ selected_song.name }}</h4>
+            <div class="w-100 border border-light"></div>
+            {% for song1 in list %}
+                <p>{{ song1 }}</p>
+            {% endfor %}
         </div>
         <div id="player" class="border border-light w-100 d-flex">
             
@@ -67,14 +61,14 @@
             <div>
                 {% for song in songs %}
                     <div class="bg-success3">
-                        <a id="audio-link" href="../home/{{ song.id }}">- <h3 class="d-inline">{{ song.name }}</h3></a><h6 class="d-inline">     < {{song.author}} ></h6>
+                        <a id="audio-link" href="../../../home/{{ song.id }}">- <h3 class="d-inline">{{ song.name }}</h3></a><h6 class="d-inline">     < {{song.author}} ></h6>
                     </div>
                 {% endfor %}
             </div>
         </div>
         <div class="w-100 h-25 p-3">
             <h1>Made with love by Poyo!</h1>
-            <h3>With the help of: <a href="https://thesomething.uk/">Jesus</a>.</h3>
+            <h3>With the help of: <a href="https://thesomething.uk/">Jesus</a> (^-^).</h3>
         </div>
     </div>
     

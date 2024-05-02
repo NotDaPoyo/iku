@@ -13,7 +13,8 @@ def home(request, id=1, play_list=1):
 
     playlists = Playlist.objects.all()
     sel_playlist = Playlist.objects.filter(id=play_list)
-    playlist = Playlist.objects.get(id=play_list).list
+    list =Playlist.objects.filter(id=play_list)
+    list.list = Playlist.objects.filter(id=play_list)
     context = {
         "songs":songs,
         "selected_song":selected_song,
@@ -21,6 +22,7 @@ def home(request, id=1, play_list=1):
         "song_lenght":round(song_lenght.info.length, 1),
         "playlists":playlists[:5],
         "sel_playlist":sel_playlist,
+        "list":list,
     }
     
     return render(request, "index.html", context)

@@ -24,7 +24,7 @@ class Song(models.Model):
 class Playlist(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
-    list = models.ForeignKey(Song, on_delete=models.CASCADE, blank=True, default=1)
+    list = models.ManyToManyField(Song, blank=True, default=1)
 
     def get_first_song(self):
         try:
