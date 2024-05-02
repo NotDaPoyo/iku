@@ -27,6 +27,9 @@
                 <h5 class="m-0 p-0">- {{playlist.name}}</h5>
                 <h6>{{playlist.description}}</h6>
             {% endfor %}
+            {% for song in sel_playlist.songs %}
+                <p>{{ song.name }}</p>
+            {% endfor %}
             <div>
                 {% for song in playlist %}
                 <div class="d-inline">

@@ -16,7 +16,7 @@ class Song(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     lenght = models.TimeField(blank=True, null=True)
-
+    
     def __str__(self):
         return self.name
     
@@ -24,14 +24,13 @@ class Song(models.Model):
 class Playlist(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
-    list = models.ManyToManyField(to=Song)
+    list = models.ForeignKey(Song, on_delete=models.CASCADE, blank=True, default=1)
 
     def get_first_song(self):
         try:
             return self.song.order_by('id')[0]
         except IndexError:
             return None
-
     def __str__(self):
         return f"{self.name}"
     
