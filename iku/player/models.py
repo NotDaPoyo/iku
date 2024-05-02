@@ -30,7 +30,7 @@ class Playlist(models.Model):
     
 class PlaylistItem(models.Model):
     playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
-    audio_file = models.ForeignKey(Song.file, on_delete=models.CASCADE)
+    song = models.ForeignKey(Song, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.playlist.name} - {self.audio_file.title}"
