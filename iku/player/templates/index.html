@@ -33,9 +33,6 @@
         </div>
         <div id="player" class="border border-light w-100 d-flex">
             
-            <audio>
-              Your browser does not support the audio element.
-            </audio>
             <audio id="track">
                 <source src="{{song_location.url}}" type="audio/mpeg">
             </audio>
@@ -79,8 +76,19 @@
         var track = document.getElementById('track');
         var controlBtn = document.getElementById('play-pause');
         var audioProgress = document.getElementById('audioProgress');
-        var checkbox = document.getElementById('checkbox');
+        var loop = document.getElementById('loop');
         
+        track.addEventListener('ended', function() {
+        function loop(){
+            if (loop.clicked) {
+                track.currentTime = 0.1;
+                track.play();
+                controlBtn.className = "play";
+            }   
+        }
+
+        }, false);
+
         function playPause() {
             if (track.paused) {
                 track.play();
@@ -104,6 +112,7 @@
         controlBtn.addEventListener("click", playPause);
         track.addEventListener("ended", function() {
             controlBtn.className = "play";
+            loop();
         });
         audioProgress.addEventListener("input", updateTrackTime);
 
@@ -113,6 +122,8 @@
             track.volume = volumeInput.value/100;
 
         });
+
+
 
     function getTimeCodeFromNum(num) {
         let seconds = parseInt(num);
@@ -124,6 +135,8 @@
         return `${String(hours).padStart(2, 0)}:${minutes}:${String(
           seconds % 60
             ).padStart(2, 0)}`;
+
+
     }
     </script>
 
