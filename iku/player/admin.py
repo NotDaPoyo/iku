@@ -4,3 +4,4 @@ from .models import *
 
 admin.site.register(Musician)
 admin.site.register(Song)
+admin.site.register(Playlist)

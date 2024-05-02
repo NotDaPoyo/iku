@@ -23,14 +23,9 @@ class Song(models.Model):
 
 class Playlist(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(max_length=1000)
+    list = models.ManyToManyField(to=Song)
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
     
-class PlaylistItem(models.Model):
-    playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
-    song = models.ForeignKey(Song, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.playlist.name} - {self.audio_file.title}"
