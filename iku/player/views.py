@@ -12,7 +12,7 @@ def home(request, id=1, play_list=1):
     song_lenght = MP3(selected_song.file)
 
     playlists = Playlist.objects.all()
-    sel_playlist = Playlist.objects.filter(id=play_list)
+    sel_playlist = Playlist.objects.get(id=play_list)
 
     context = {
         "songs":songs,

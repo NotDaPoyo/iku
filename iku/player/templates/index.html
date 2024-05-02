@@ -21,16 +21,21 @@
         <h1 class="underline">Play.list</h1>
         <div class="border border-light h-75 p-2">
             <h2>Top Playlists</h2>
-            
-            
+            <div class="overflow">
             {% for playlist in playlists %}
-                <h5 class="m-0 p-0">- {{playlist.name}}</h5>
+                <a><h5 class="m-0 p-0">- {{playlist.name}}</h5>
                 <h6>{{playlist.description}}</h6>
             {% endfor %}
+            </div>
             <div class="w-100 border border-light"></div>
             <h4>Now playing: {{ selected_song.name }}</h4>
             <div class="w-100 border border-light"></div>
-            <p>{{sel_playlist_list.list}}</p>
+            <h4 class="p-0 m-0 underline">{{sel_playlist.name}}</h4>
+            <div class="overflow">
+                {% for song in sel_playlist.list.all %}
+                    <h5 class="m-0 p-0">- {{song.name}}</h5>
+                {% endfor %}
+            </div>
         </div>
         <div id="player" class="border border-light w-100 d-flex">
             
@@ -72,21 +77,14 @@
     
 </div>
 
+<script>
+var track = document.getElementById('track');
+var controlBtn = document.getElementById('play-pause');
+var audioProgress = document.getElementById('audioProgress');
+var loop = document.getElementById('loop');
+var volumeInput = document.getElementById('volume');
 
-    <script>
-        var track = document.getElementById('track');
-        var controlBtn = document.getElementById('play-pause');
-        var audioProgress = document.getElementById('audioProgress');
-        var loop = document.getElementById('loop');
-        var volumeInput = document.getElementById('volume');
-        track.addEventListener('ended', function() {
-        if (loop.checked) {
-            track.currentTime = 0;
-            track.loop = true;
-            track.play();
-        } 
-    }, false);
-        function playPause() {
+function playPause() {
             if (track.paused) {
                 track.play();
                 controlBtn.className = "pause";
@@ -95,18 +93,27 @@
                 controlBtn.className = "play";
             }
         }
-        
-        
-        function updateTrackTime() {
-            track.currentTime = audioProgress.value;
-        }
-        track.addEventListener('timeupdate', function() {
-            audioProgress.value = track.currentTime;
-        });
-        controlBtn.addEventListener("click", playPause);
-        audioProgress.addEventListener("input", updateTrackTime);
-        volumeInput.addEventListener('input', function() {
-            track.volume = volumeInput.value/100;
-        });
+
+function updateTrackTime() {
+    track.currentTime = audioProgress.value;
+}
+
+track.addEventListener('ended', function() {
+    if (loop.checked) {
+        track.currentTime = 0;
+        track.loop = true;
+        track.play();
+    } 
+}, false);
+
+track.addEventListener('timeupdate', function() {
+    audioProgress.value = track.currentTime;
+});
+
+controlBtn.addEventListener("click", playPause);
+audioProgress.addEventListener("input", updateTrackTime);
+volumeInput.addEventListener('input', function() {
+    track.volume = volumeInput.value/100;
+});
 </script>
 {% endblock content %}

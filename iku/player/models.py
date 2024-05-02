@@ -26,8 +26,6 @@ class Playlist(models.Model):
     description = models.TextField(max_length=1000)
     list = models.ManyToManyField(Song, blank=True)
 
-    def list():
-        return list
     def __str__(self):
         return f"{self.name}"
     
