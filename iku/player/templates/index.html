@@ -77,13 +77,14 @@
         var controlBtn = document.getElementById('play-pause');
         var audioProgress = document.getElementById('audioProgress');
         var loop = document.getElementById('loop');
-        audioElement.loop=true;
-        
+
         track.addEventListener('ended', function() {
-            if (loop.clicked) {
-                audioElement.loop=true;
-            } 
-        },false);
+        if (loop.checked) {
+            track.currentTime = 0;
+            track.loop = true;
+            track.play();
+        } 
+    }, false);
 
         function playPause() {
             if (track.paused) {
@@ -106,10 +107,6 @@
         }
 
         controlBtn.addEventListener("click", playPause);
-        track.addEventListener("ended", function() {
-            controlBtn.className = "play";
-            loop();
-        });
         audioProgress.addEventListener("input", updateTrackTime);
 
 
