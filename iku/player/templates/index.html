@@ -23,7 +23,7 @@
             <h2>Top Playlists</h2>
             <div class="overflow">
             {% for playlist in playlists %}
-                <a href="{{playlist.id}}" class="text-light p-0 m-0"><h5 class="m-0 p-0">- {{playlist.name}}</h5></a>
+                <h6 class="d-inline p-0 m-0">- <a href="{{playlist.id}}" class="text-light">{{ playlist.name }}</a></h6>
                 <h6>{{playlist.description}}</h6>
             {% endfor %}
             </div>
@@ -33,7 +33,7 @@
             <h4 class="p-0 m-0 underline">{{sel_playlist.name}}</h4>
             <div class="overflow">
                 {% for song in sel_playlist.list.all %}
-                <a href="../../../home/{{ song.id }}/{{sel_playlist.id}}" class="text-light">- <h6 class="d-inline p-0 m-0">{{ song.name }}</h6></a><br>
+                <h6 class="d-inline p-0 m-0">- <a href="../../../home/{{ song.id }}/{{sel_playlist.id}}" class="text-light">{{ song.name }}</h6></a><br>
                 {% endfor %}
             </div>
         </div>
@@ -64,7 +64,7 @@
             <div>
                 {% for song in songs %}
                     <div class="bg-success3">
-                        <a id="audio-link" href="../../../home/{{ song.id }}">- <h3 class="d-inline">{{ song.name }}</h3></a><h6 class="d-inline">     < {{song.author}} ></h6>
+                        <h3 class="d-inline">- <a id="audio-link" href="../../../home/{{ song.id }}">{{ song.name }}</h3></a><h6 class="d-inline">     < {{song.author}} ></h6>
                     </div>
                 {% endfor %}
             </div>
