@@ -33,7 +33,7 @@
             <h4 class="p-0 m-0 underline">{{sel_playlist.name}}</h4>
             <div class="overflow">
                 {% for song in sel_playlist.list.all %}
-                    <h5 class="m-0 p-0">- {{song.name}}</h5>
+                <a href="../../../home/{{ song.id }}/{{sel_playlist.id}}" class="text-light">- <h6 class="d-inline p-0 m-0">{{ song.name }}</h6></a><br>
                 {% endfor %}
             </div>
         </div>
