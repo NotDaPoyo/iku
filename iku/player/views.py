@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 from mutagen.mp3 import MP3
@@ -24,3 +24,6 @@ def home(request, id=1, play_list=1):
     }
     
     return render(request, "index.html", context)
+
+def redirectHome(request):
+    return redirect('/home')

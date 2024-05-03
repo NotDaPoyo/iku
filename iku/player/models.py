@@ -15,7 +15,6 @@ class Song(models.Model):
     file = models.FileField(upload_to="media/")
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
-    lenght = models.TimeField(blank=True, null=True)
     
     def __str__(self):
         return self.name
@@ -25,6 +24,7 @@ class Playlist(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
     list = models.ManyToManyField(Song, blank=True)
+    cover = models.FileField(upload_to="covers/", blank=True)
 
     def __str__(self):
         return f"{self.name}"
