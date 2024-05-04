@@ -85,13 +85,14 @@
     var audioProgress = document.getElementById('audioProgress');
     var loop = document.getElementById('loop');
     var volumeInput = document.getElementById('volume');
+    var nextSong = document.getElementById('nextSong');
     track.addEventListener('ended', function() {
     if (loop.checked) {
         track.currentTime = 0;
         track.loop = true;
         track.play();
     } 
-    else {
+    else if (nextSong.checked){
         window.location.href = "../../../home/{{next_song.id}}/{{sel_playlist.id}}";
     }
 }, false);
