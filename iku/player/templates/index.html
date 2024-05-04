@@ -28,7 +28,7 @@
             {% endfor %}
             </div>
             <div class="w-100 border border-light"></div>
-            <div class="overflow">
+            <div class="overflow py-2 h-50">
                 <h4 class="p-0 m-0 underline">{{sel_playlist.name}}</h4>
                 {% for song in sel_playlist.list.all %}
                 <h6 class="d-inline p-0 m-0">- <a href="../../../home/{{ song.id }}/{{sel_playlist.id}}" class="text-light">{{ song.name }}</h6></a><br>
