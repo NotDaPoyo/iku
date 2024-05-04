@@ -28,14 +28,14 @@
             {% endfor %}
             </div>
             <div class="w-100 border border-light"></div>
-            <h3>Now playing: {{ selected_song.name }}</h3>
-            <div class="w-100 border border-light"></div>
-            <h4 class="p-0 m-0 underline">{{sel_playlist.name}}</h4>
             <div class="overflow">
+                <h4 class="p-0 m-0 underline">{{sel_playlist.name}}</h4>
                 {% for song in sel_playlist.list.all %}
                 <h6 class="d-inline p-0 m-0">- <a href="../../../home/{{ song.id }}/{{sel_playlist.id}}" class="text-light">{{ song.name }}</h6></a><br>
                 {% endfor %}
             </div>
+            <div class="w-100 border border-light"></div>
+            <h3>Now playing: {{ selected_song.name }}</h3>
         </div>
         <div id="player" class="border border-light w-100 d-flex">
             
